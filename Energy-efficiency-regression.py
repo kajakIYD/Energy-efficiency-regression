@@ -28,7 +28,7 @@
 
 # # Kod programu
 
-# In[54]:
+# In[1]:
 
 
 import pandas as pd
@@ -43,7 +43,7 @@ from sklearn.preprocessing import PolynomialFeatures, StandardScaler
 from sklearn.pipeline import Pipeline
 
 
-# In[55]:
+# In[2]:
 
 
 df = pd.read_excel("ENB2012_data.xlsx")
@@ -53,7 +53,7 @@ df
 
 # ## Histogramy
 
-# In[56]:
+# In[3]:
 
 
 ax = plt.figure(figsize=(12,12)).gca()
@@ -62,7 +62,7 @@ df.hist(ax=ax)
 
 # ## Korelacje pomiędzy cechami a wartością wyjściową (współczynnik korelacji Pearsona)
 
-# In[57]:
+# In[4]:
 
 
 df_corr_y1 = df.corr()['Y1'][:-1]
@@ -75,7 +75,7 @@ plt.show()
 
 # ## Przygotowanie zbioru treningowego i testowego
 
-# In[58]:
+# In[5]:
 
 
 output = "Y1"
@@ -92,7 +92,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 # ### Regresja liniowa
 # $y = b + z_1x_1 + z_2x_2 + ... $
 
-# In[74]:
+# In[6]:
 
 
 reg = LinearRegression().fit(X_train, y_train)
@@ -128,7 +128,7 @@ plt.show()
 # ### Regresja wielomianowa - spośród wszystkich daje najlepszy wynik
 # $y = b + z_1x_1 + z_2x_2 + z_3x_1^2 + z_4x_2^2 + z_5x_1x_2 + ... $
 
-# In[75]:
+# In[7]:
 
 
 model = Pipeline([('poly', PolynomialFeatures(degree=2)),
@@ -159,14 +159,14 @@ sns.scatterplot(
     y=y_to_plot - y,
     label="Errors for each instance"
 )
-plt.title("Linear regression - errors values")
+plt.title("Polynomial regression - errors values")
 plt.legend()
 plt.show()
 
 
 # ### Regresja metodą stochastycznego spadku gradientowego
 
-# In[76]:
+# In[8]:
 
 
 model = Pipeline([
